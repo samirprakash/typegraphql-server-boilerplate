@@ -1,0 +1,8 @@
+{
+  "name": "typegraphql-server-boilerplate",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:samirprakash/typegraphql-server-boilerplate.git",
+  "author": "Samir Prakash <Samir.Prakash@gmail.com>",
+  "license": "MIT"
+}
