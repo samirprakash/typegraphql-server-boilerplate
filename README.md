@@ -14,9 +14,16 @@ A backend server using TypeGraphql, TypeORM, TypeScript and Postgres for an e-co
 - [GraphQL](https://graphql.org/)
 - [Apollo](https://www.apollographql.com/)
 - [Express](https://expressjs.com/)
-- [Sequelize](http://docs.sequelizejs.com/)
-- [Babel](https://babeljs.io/)
-- [Eslint](https://eslint.org/)
-- [Eslint config Airbnb](https://www.npmjs.com/package/eslint-config-airbnb)
 - [Postgresql](https://www.postgresql.org/)
+
+# Built with:
+
+- [express](https://www.npmjs.com/package/express)
+- [graphql](https://www.npmjs.com/package/graphql)
+- [type-graphql](https://www.npmjs.com/package/type-graphql)
+- [apollo-server-express](https://www.npmjs.com/package/apollo-server-express)
+- [reflect-metadata](https://www.npmjs.com/package/reflect-metadata)
 - [brcypt](https://www.npmjs.com/package/bcrypt)
+- [nodemon](https://www.npmjs.com/package/nodemon)
+- [ts-node](https://www.npmjs.com/package/ts-node)
+- [typescript](https://www.npmjs.com/package/typescript)
