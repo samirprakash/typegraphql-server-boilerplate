@@ -1,12 +1,13 @@
 /* 
-RegisterResolver is the resolver created to operate on the USER table for any registration process.
+RegisterResolver operates on the USER table to fetch or modify the table content.
 
-It is responsible for running queries and mutations on the USER table
+Queries and Mutations to be used during the registration process are defined here.
 */
 
-import * as bcrypt from "bcryptjs";
+import bcrypt from "bcryptjs";
 import { Arg, Mutation, Query, Resolver } from "type-graphql";
 import { User } from "../../entity/User";
+import { RegisterInput } from "./register/RegisterInput";
 
 @Resolver()
 export class RegisterResolver {
@@ -16,15 +17,20 @@ export class RegisterResolver {
     return "Hello World";
   }
   // Register mutation to create a new user in the USER DB
+  // Validations and strcuture of the input is being read from RegisterInput
   @Mutation(() => User)
-  async register(
-    @Arg("firstName") firstName: string,
-    @Arg("lastName") lastName: string,
-    @Arg("email") email: string,
-    @Arg("password") password: string
-  ): Promise<User> {
+  async register(@Arg("data")
+  {
+    firstName,
+    lastName,
+    email,
+    password
+  }: RegisterInput): Promise<User> {
     const hashedPassword = await bcrypt.hash(password, 12);
 
+    // .create() cretes an User object
+    // ,save() created an entry in the DB
+    // Just calling .create() does not update the DB
     const user = await User.create({
       firstName,
       lastName,

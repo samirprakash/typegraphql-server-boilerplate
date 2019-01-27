@@ -1,7 +1,7 @@
 import { ApolloServer } from "apollo-server-express";
-import * as Express from "express";
+import Express from "express";
 import "reflect-metadata";
-import { buildSchema } from "type-graphql";
+import { buildSchema, formatArgumentValidationError } from "type-graphql";
 import { createConnection } from "typeorm";
 import { RegisterResolver } from "./modules/user/Register";
 
@@ -16,7 +16,10 @@ const main = async () => {
 
   // Create an instance of Apollo Server with the schema
   // Schema internally contains reference to the resolvers
-  const apolloServer = new ApolloServer({ schema });
+  const apolloServer = new ApolloServer({
+    schema,
+    formatError: formatArgumentValidationError
+  });
 
   const app = Express();
 
