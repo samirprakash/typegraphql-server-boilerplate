@@ -27,3 +27,5 @@ A backend server using TypeGraphql, TypeORM, TypeScript and Postgres for an e-co
 - [nodemon](https://www.npmjs.com/package/nodemon)
 - [ts-node](https://www.npmjs.com/package/ts-node)
 - [typescript](https://www.npmjs.com/package/typescript)
+- [pg](https://www.npmjs.com/package/pg)
+- [typeorm](https://www.npmjs.com/package/typeorm)
