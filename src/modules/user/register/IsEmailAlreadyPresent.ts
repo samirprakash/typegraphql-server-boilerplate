@@ -1,9 +1,8 @@
 /* 
-IsEmailAlreadyPresent is a custom validator to check if an email being used for registration already 
+IsEmailAlreadyPresent is a custom validator to check if the email being used for registration already 
 exists in our database or not.
 
 This class uses custom validation abilities provided by the class-validator package.
-
 */
 
 import {

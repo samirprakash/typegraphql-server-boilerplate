@@ -1,7 +1,14 @@
 /* 
-RegisterResolver operates on the USER table to fetch or modify the table content.
+RegisterResolver operates on the USER table to create a new user.
+
+We have a default query defined below keep Graphql happy. It expects atleast one query and hence this dummy query has been provided.
+Register mutation creats a user in the USER table based on the values that have been provided while calling this resolver.
+The fields firstName, lastName, email and password are required to make a call to this resolver in order to create a user.
+Password gets encrupted using bcryptjs hashing algorithm while other values are passes on as-is.
 
 Queries and Mutations to be used during the registration process are defined here.
+
+It returns an object of entity type User.
 */
 
 import bcrypt from "bcryptjs";
@@ -13,11 +20,12 @@ import { RegisterInput } from "./register/RegisterInput";
 export class RegisterResolver {
   // Define a default query to keep Graphql happy
   @Query(() => String)
-  async hello() {
-    return "Hello World";
+  async defaultQueryToMakeGraphqlHappy() {
+    return "Graphql is happy now!";
   }
+
   // Register mutation to create a new user in the USER DB
-  // Validations and strcuture of the input is being read from RegisterInput
+  // Validations and structure of the input is being read from RegisterInput
   @Mutation(() => User)
   async register(@Arg("data")
   {

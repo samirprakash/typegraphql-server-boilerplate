@@ -1,5 +1,5 @@
 /* 
-User entity creats and maps to User table in the underlying Postgres DB.
+User entity maps to User table in the underlying Postgres DB.
 
 This is a TypeORM entity which would be unmarshalled to generate a DB table with
 with the column names mapping to the field names provided here.

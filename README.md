@@ -28,13 +28,17 @@ This being a GUI application it needs to be compiled before it can be run.
 - Install [Postgress app](https://postgresapp.com/)
 - Install [redis](https://redis.io/download)
 
+Make sure that postgres is up and running and a user has been created to connect to it. It is also required to create a database with the same name as has been defined in the `ormconfig.json` file under `username` and `password` keys. Feel free to modify the `ormconfig.json` file based on your local username and password but keep the table name unchanged.
+
+Ensure that redis server is up and running.
+
 ### Installing
 
 - Open a new terminal and CD to your cloned repo
 - Execute `yarn install` on the terminal
 - Execute `yarn start` to get the build dependencies
 - Check that there are no errors on the terminal
-- Server start would start at `http://localhost:4000/graphql`
+- Server will start at `http://localhost:4000/graphql`
 
 This URL is a Graphql playground that can be used to verify the functionalities provided by the server side implementation. Client application would be required to connect to this URL for serving data on the GUI.
 
@@ -46,31 +50,11 @@ Execute `yarn test` to execute the tests that are present in this application co
 
 `This section needs to be updated`
 
-## Documenttion
+## Documentation
+
+For validating the existing queries and mutations, a set of examples for reference can be accessed from [here](./docs/graphql-samples/).
 
 `this section needs to be updated`
-
-## Built With
-
-- [Node JS](https://nodejs.org/en/)
-- [yarn](https://yarnpkg.com/en/)
-- [React](https://reactjs.org/)
-- [GraphQL](https://graphql.org/)
-- [Apollo](https://www.apollographql.com/)
-- [Express](https://expressjs.com/)
-- [Postgresql](https://www.postgresql.org/)
-- [Redis](https://https://redis.io/)
-- [express](https://www.npmjs.com/package/express)
-- [graphql](https://www.npmjs.com/package/graphql)
-- [type-graphql](https://www.npmjs.com/package/type-graphql)
-- [apollo-server-express](https://www.npmjs.com/package/apollo-server-express)
-- [reflect-metadata](https://www.npmjs.com/package/reflect-metadata)
-- [brcypt](https://www.npmjs.com/package/bcrypt)
-- [typescript](https://www.npmjs.com/package/typescript)
-- [pg](https://www.npmjs.com/package/pg)
-- [typeorm](https://www.npmjs.com/package/typeorm)
-- [ts-node-dev](https://www.npmjs.com/package/ts-node-dev)
-- [class-validator](https://www.npmjs.com/package/class-validator)
 
 ## Contributing
 
