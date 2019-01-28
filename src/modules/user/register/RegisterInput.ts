@@ -11,7 +11,7 @@ Custom messages can be generated from the endpoints to return back to the GUI fo
  */
 import { IsEmail, Length } from "class-validator";
 import { Field, InputType } from "type-graphql";
-import { IsEmailAlredyPresent } from "./IsEmailAlreadyPresent";
+import { IsEmailAlreadyPresent } from "./IsEmailAlreadyPresent";
 
 @InputType()
 export class RegisterInput {
@@ -25,7 +25,7 @@ export class RegisterInput {
 
   @Field()
   @IsEmail()
-  @IsEmailAlredyPresent({
+  @IsEmailAlreadyPresent({
     message:
       "Email $value is already registered in the system. Please use another email."
   })

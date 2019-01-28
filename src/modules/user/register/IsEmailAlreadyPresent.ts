@@ -30,7 +30,7 @@ export class IsEmailAlredyPresentConstraint
 
 // Use the custom constraint to create a custom validator
 // This is used as a decorator on the email field in RegisterInput class
-export function IsEmailAlredyPresent(validationOptions?: ValidationOptions) {
+export function IsEmailAlreadyPresent(validationOptions?: ValidationOptions) {
   return function(object: Object, propertyName: string) {
     registerDecorator({
       target: object.constructor,
