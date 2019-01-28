@@ -3,25 +3,31 @@ import Express from "express";
 import "reflect-metadata";
 import { buildSchema, formatArgumentValidationError } from "type-graphql";
 import { createConnection } from "typeorm";
+import cors from "./config/cors";
+import session from "./config/session";
+import { CurrentUserResolver } from "./modules/user/CurrentUser";
+import { LoginResolver } from "./modules/user/Login";
 import { RegisterResolver } from "./modules/user/Register";
 
 const main = async () => {
-  // Create connection with postgres based on ormconfig.json
+  // Use ormconfig.json for postgres connection
   await createConnection();
 
-  // Define a schema and register the resolvers
+  // register the resolvers with schema
   const schema = await buildSchema({
-    resolvers: [RegisterResolver]
+    resolvers: [CurrentUserResolver, RegisterResolver, LoginResolver]
   });
 
-  // Create an instance of Apollo Server with the schema
-  // Schema internally contains reference to the resolvers
+  // Create an instance of Apollo Server providing schema
   const apolloServer = new ApolloServer({
     schema,
-    formatError: formatArgumentValidationError
+    formatError: formatArgumentValidationError,
+    context: ({ req }: any) => ({ req })
   });
 
   const app = Express();
+  app.use(cors);
+  app.use(session);
 
   // Connect the express app with apollo server
   apolloServer.applyMiddleware({ app });
