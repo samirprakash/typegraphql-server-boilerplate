@@ -12,13 +12,15 @@ It returns an object of entity type User.
 */
 
 import bcrypt from "bcryptjs";
-import { Arg, Mutation, Query, Resolver } from "type-graphql";
+import { Arg, Mutation, Query, Resolver, UseMiddleware } from "type-graphql";
 import { User } from "../../entity/User";
+import { IsUserAuthenticated } from "../middleware/IsUserAuthenticated";
 import { RegisterInput } from "./register/RegisterInput";
 
 @Resolver()
 export class RegisterResolver {
   // Define a default query to keep Graphql happy
+  @UseMiddleware(IsUserAuthenticated)
   @Query(() => String)
   async defaultQueryToMakeGraphqlHappy() {
     return "Graphql is happy now!";
