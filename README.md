@@ -1,8 +1,8 @@
-# InsurEasier : `Server`
+# insurEasier : `Server`
 
-**All Insurane Made Easier**
+**All Insurance Made Easier**
 
-InsurEasier is an application that intends to ease the life for both insurance seekers and providers by bringing them together on a common interactive platform.
+insurEasier is an application that intends to ease the life for both insurance seekers and providers by bringing them together on a common interactive platform.
 
 URL: _http://insureasier.com_
 
@@ -10,7 +10,7 @@ URL: _http://insureasier.com_
 
 - Get the pre-requisites done
 - Open a new terminal window and CD to your workspace
-- Clone this repo by executing `git clone git@github.com:insurEasier007/insurEasier_ReactStrap.git`
+- Clone this repo by executing `git clone git@github.com:insurEasier/server-broilerplate.git`
 
 ### Prerequisites
 
