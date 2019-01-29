@@ -5,6 +5,7 @@ import { buildSchema, formatArgumentValidationError } from "type-graphql";
 import { createConnection } from "typeorm";
 import cors from "./config/cors";
 import session from "./config/session";
+import { ConfirmUserResolver } from "./modules/user/ConfirmUser";
 import { CurrentUserResolver } from "./modules/user/CurrentUser";
 import { LoginResolver } from "./modules/user/Login";
 import { RegisterResolver } from "./modules/user/Register";
@@ -15,7 +16,12 @@ const main = async () => {
 
   // register the resolvers with schema
   const schema = await buildSchema({
-    resolvers: [CurrentUserResolver, RegisterResolver, LoginResolver]
+    resolvers: [
+      CurrentUserResolver,
+      RegisterResolver,
+      LoginResolver,
+      ConfirmUserResolver
+    ]
   });
 
   // Create an instance of Apollo Server providing schema

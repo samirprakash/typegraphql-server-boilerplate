@@ -15,6 +15,8 @@ import bcrypt from "bcryptjs";
 import { Arg, Mutation, Query, Resolver, UseMiddleware } from "type-graphql";
 import { User } from "../../entity/User";
 import { IsUserAuthenticated } from "../middleware/IsUserAuthenticated";
+import createConfirmationURL from "../utils/CreateConfirmationURL";
+import { SendEmail } from "../utils/SendEmail";
 import { RegisterInput } from "./register/RegisterInput";
 
 @Resolver()
@@ -47,6 +49,9 @@ export class RegisterResolver {
       email,
       password: hashedPassword
     }).save();
+
+    // Once the user has been saved successfully, send the confirmation mail
+    SendEmail(email, await createConfirmationURL(user.id));
 
     return user;
   }
