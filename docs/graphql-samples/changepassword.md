@@ -13,8 +13,10 @@ Please keep this example updated till the time we keep making changes to the `fo
 ```
 utation {
   changePassword(
-    token: "f0fdb24a-73b3-4324-97f1-e0e1c97c7ec4"
-    newPassword: "TestUser1@test.com"
+    data: {
+      token: "f0fdb24a-73b3-4324-97f1-e0e1c97c7ec4"
+        password: "TestUser1@test.com"
+    }
   ) {
     id
     name

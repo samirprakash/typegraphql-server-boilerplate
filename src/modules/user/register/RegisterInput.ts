@@ -7,7 +7,6 @@ checking if the email is valid or not, and adding custom constraint such as to c
 is already present in our DB or not.
 
 Custom messages can be generated from the endpoints to return back to the GUI for better UX.
-
  */
 import { IsEmail, Length } from "class-validator";
 import { Field, InputType } from "type-graphql";
@@ -32,5 +31,6 @@ export class RegisterInput {
   email: string;
 
   @Field()
+  @Length(6, 18)
   password: string;
 }
