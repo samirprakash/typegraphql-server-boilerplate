@@ -7,6 +7,7 @@ import cors from "./config/cors";
 import session from "./config/session";
 import { ConfirmUserResolver } from "./modules/user/ConfirmUser";
 import { CurrentUserResolver } from "./modules/user/CurrentUser";
+import { ForgotPasswordResolver } from "./modules/user/ForgotPassword";
 import { LoginResolver } from "./modules/user/Login";
 import { RegisterResolver } from "./modules/user/Register";
 
@@ -20,7 +21,8 @@ const main = async () => {
       CurrentUserResolver,
       RegisterResolver,
       LoginResolver,
-      ConfirmUserResolver
+      ConfirmUserResolver,
+      ForgotPasswordResolver
     ]
   });
 

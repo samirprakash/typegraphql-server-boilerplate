@@ -16,6 +16,7 @@ Queries and Mutations to be used during the user confirmation process are define
 
 import { Arg, Mutation, Resolver } from "type-graphql";
 import redis from "../../config/redis";
+import { USER_CONFIRMATION_PREFIX } from "../../constants/prefix";
 import { User } from "../../entity/User";
 
 @Resolver()
@@ -24,7 +25,7 @@ export class ConfirmUserResolver {
   // Validations and structure of the input is being read from LoginInput
   @Mutation(() => Boolean)
   async confirmUser(@Arg("token") token: string): Promise<boolean> {
-    const userId = await redis.get(token);
+    const userId = await redis.get(USER_CONFIRMATION_PREFIX + token);
 
     if (!userId) {
       return false;

@@ -1,5 +1,5 @@
 /* 
-createConfirmationURL creates a well-formed URL pointing to our front end application.
+createEmailURL  creates a well-formed URL pointing to our front end application.
 The confirmation email being sent after the registration process would contain this link in the message body.
 User would be required to click on this link to conform their email address and complete the registration process.
 
@@ -16,11 +16,11 @@ based on the status of token, registration would be confirmed or rejected. This 
 import { v4 } from "uuid";
 import redis from "../../config/redis";
 
-const createConfirmationURL = async (userId: number) => {
+const createEmailURL = async (userId: number, prefix: string, flow: string) => {
   const token = v4();
-  await redis.set(token, userId, "ex", 60 * 60 * 24); // Expires after 1 day
+  await redis.set(prefix + token, userId, "ex", 60 * 60 * 24); // Expires after 1 day
 
-  return `http://localhost:3000/user/confirm/${token}`;
+  return `http://localhost:3000/user/${flow}/${token}`;
 };
 
-export default createConfirmationURL;
+export default createEmailURL;
