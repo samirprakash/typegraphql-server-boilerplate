@@ -10,6 +10,7 @@ import { ConfirmUserResolver } from "./modules/user/ConfirmUser";
 import { CurrentUserResolver } from "./modules/user/CurrentUser";
 import { ForgotPasswordResolver } from "./modules/user/ForgotPassword";
 import { LoginResolver } from "./modules/user/Login";
+import { LogoutResolver } from "./modules/user/Logout";
 import { RegisterResolver } from "./modules/user/Register";
 
 const main = async () => {
@@ -24,7 +25,8 @@ const main = async () => {
       LoginResolver,
       ConfirmUserResolver,
       ForgotPasswordResolver,
-      ChangePasswordResolver
+      ChangePasswordResolver,
+      LogoutResolver
     ]
   });
 
@@ -32,7 +34,7 @@ const main = async () => {
   const apolloServer = new ApolloServer({
     schema,
     formatError: formatArgumentValidationError,
-    context: ({ req }: any) => ({ req })
+    context: ({ req, res }: any) => ({ req, res })
   });
 
   const app = Express();

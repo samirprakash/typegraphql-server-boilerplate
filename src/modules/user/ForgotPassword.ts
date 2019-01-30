@@ -21,7 +21,7 @@ import { SendEmail } from "../utils/SendEmail";
 @Resolver()
 export class ForgotPasswordResolver {
   @Mutation(() => Boolean)
-  async forgotPassword(@Arg("email") email: string): Promise<boolean> {
+  async forgotPassword(@Arg("email") email: string): Promise<Boolean> {
     const user = await User.findOne({ where: { email } });
 
     if (!user) {

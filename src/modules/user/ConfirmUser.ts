@@ -24,7 +24,7 @@ export class ConfirmUserResolver {
   // Login mutation to create a new user in the USER DB
   // Validations and structure of the input is being read from LoginInput
   @Mutation(() => Boolean)
-  async confirmUser(@Arg("token") token: string): Promise<boolean> {
+  async confirmUser(@Arg("token") token: string): Promise<Boolean> {
     const userId = await redis.get(USER_CONFIRMATION_PREFIX + token);
 
     if (!userId) {
