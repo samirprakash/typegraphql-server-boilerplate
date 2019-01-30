@@ -1,18 +1,18 @@
-### Confirm User Mutation
+### Forgot Password Mutation
 
-This is an example mutation that can be executed in the graphql playground to make sure that the confirmation user process is working as expeected.
+This is an example mutation that can be executed in the graphql playground to make sure that the forgot password user flow is working as expeected.
 
-> Before testing this mutation make sure to register a new user
+Check the database and find a registered user. Use the registred user's email to execute the below mutation.
 
 Copy the content below and go to `http://localhost:4000/graphql` to see this mutation in action.
 
-Please keep this example updated till the time we keep making changes to the confirmUser mutation.
+Please keep this example updated till the time we keep making changes to the `forgotPassword` mutation.
 
 ##### Execute:
 
 ```
 mutation{
-  confirmUser(token: "041f10f2-dd25-4834-a708-74c58ed3f19c")
+  forgotPassword(email: "TestUser1@test.com")
 }
 ```
 
@@ -21,7 +21,7 @@ mutation{
 ```
 {
   "data": {
-    "confirmUser": true
+    "forgotPassword": true
   }
 }
 ```
@@ -38,4 +38,4 @@ After execution, to verify:
 - Check the server logs to see that the email has been sent.
 - Click on the link from the server `(as show above)` to view the email
 - Click on the link in the email to see the redirection to `localhost:3000`
-- Copy and keep the token with you to validate the user confirmation flow during registration
+- Copy and keep the token with you to validate the change password user flow

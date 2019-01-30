@@ -4,7 +4,7 @@ This is an example query that can be executed in the graphql playground to make 
 
 Please keep this example updated till the time we keep making changes to the current user query.
 
-Run the login mutation before validating session for an existing user.
+> Run the login mutation before validating session for an existing user.
 
 ##### Execute:
 
