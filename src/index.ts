@@ -5,6 +5,7 @@ import { buildSchema, formatArgumentValidationError } from "type-graphql";
 import { createConnection } from "typeorm";
 import cors from "./config/cors";
 import session from "./config/session";
+import { ChangePasswordResolver } from "./modules/user/ChangePassword";
 import { ConfirmUserResolver } from "./modules/user/ConfirmUser";
 import { CurrentUserResolver } from "./modules/user/CurrentUser";
 import { ForgotPasswordResolver } from "./modules/user/ForgotPassword";
@@ -22,7 +23,8 @@ const main = async () => {
       RegisterResolver,
       LoginResolver,
       ConfirmUserResolver,
-      ForgotPasswordResolver
+      ForgotPasswordResolver,
+      ChangePasswordResolver
     ]
   });
 

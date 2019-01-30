@@ -1,5 +1,5 @@
 /* 
-ForgotPasswordResolver handles the change password flow which would aid a user to update the current password for its account.
+ForgotPasswordResolver handles the forgot password flow which would aid a user by sending a mail with a link to change the user password.
 
 forgotPassword mutation recieves an email which is used to get the registered user from the database.
 If do not find the user linked to the email, then also we send true as we do not want to be specific with the error.

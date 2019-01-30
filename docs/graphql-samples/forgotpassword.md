@@ -1,6 +1,6 @@
 ### Forgot Password Mutation
 
-This is an example mutation that can be executed in the graphql playground to make sure that the forgot password user flow is working as expeected.
+This is an example mutation that can be executed in the graphql playground to make sure that the forgot password user flow is working as expected.
 
 Check the database and find a registered user. Use the registred user's email to execute the below mutation.
 
