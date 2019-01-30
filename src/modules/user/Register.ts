@@ -20,8 +20,8 @@ import bcrypt from "bcryptjs";
 import { Arg, Mutation, Query, Resolver, UseMiddleware } from "type-graphql";
 import { USER_CONFIRMATION_PREFIX } from "../../constants/prefix";
 import { User } from "../../entity/User";
-import createEmailURL from "../../utils/app/createEmailURL";
-import { SendEmail } from "../../utils/app/SendEmail";
+import createEmailURL from "../../utils/email/create";
+import { SendEmail } from "../../utils/email/send";
 import { IsUserAuthenticated } from "../middleware/IsUserAuthenticated";
 import { RegisterInput } from "./register/RegisterInput";
 

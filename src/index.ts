@@ -1,34 +1,18 @@
 import { ApolloServer } from "apollo-server-express";
 import Express from "express";
 import "reflect-metadata";
-import { buildSchema, formatArgumentValidationError } from "type-graphql";
+import { formatArgumentValidationError } from "type-graphql";
 import { createConnection } from "typeorm";
 import cors from "./config/cors";
 import session from "./config/session";
-import { ChangePasswordResolver } from "./modules/user/ChangePassword";
-import { ConfirmUserResolver } from "./modules/user/ConfirmUser";
-import { CurrentUserResolver } from "./modules/user/CurrentUser";
-import { ForgotPasswordResolver } from "./modules/user/ForgotPassword";
-import { LoginResolver } from "./modules/user/Login";
-import { LogoutResolver } from "./modules/user/Logout";
-import { RegisterResolver } from "./modules/user/Register";
+import createSchema from "./utils/schema/create";
 
 const main = async () => {
   // Use ormconfig.json for postgres connection
   await createConnection();
 
   // register the resolvers with schema
-  const schema = await buildSchema({
-    resolvers: [
-      CurrentUserResolver,
-      RegisterResolver,
-      LoginResolver,
-      ConfirmUserResolver,
-      ForgotPasswordResolver,
-      ChangePasswordResolver,
-      LogoutResolver
-    ]
-  });
+  const schema = await createSchema();
 
   // Create an instance of Apollo Server providing schema
   const apolloServer = new ApolloServer({

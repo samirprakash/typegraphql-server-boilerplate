@@ -15,8 +15,8 @@ Queries and Mutations to be used during the user confirmation process are define
 import { Arg, Mutation, Resolver } from "type-graphql";
 import { FORGOT_PASSWORD_PREFIX } from "../../constants/prefix";
 import { User } from "../../entity/User";
-import createEmailURL from "../../utils/app/createEmailURL";
-import { SendEmail } from "../../utils/app/SendEmail";
+import createEmailURL from "../../utils/email/create";
+import { SendEmail } from "../../utils/email/send";
 
 @Resolver()
 export class ForgotPasswordResolver {
