@@ -1,3 +1,7 @@
+/* 
+Build schema using the resolvers to be used by the apollo graphql server.
+*/
+
 import { buildSchema } from "type-graphql";
 import { ChangePasswordResolver } from "../../modules/user/ChangePassword";
 import { ConfirmUserResolver } from "../../modules/user/ConfirmUser";

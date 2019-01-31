@@ -1,16 +1,15 @@
 /* 
-createEmailURL  creates a well-formed URL pointing to our front end application.
-The confirmation email being sent after the registration process would contain this link in the message body.
-User would be required to click on this link to conform their email address and complete the registration process.
+createEmailURL creates a well-formed URL pointing to our front end application.
 
-A new token is generated using the uuid package and the user.ID for the registered user is saved in redis store
-with key as the token and value as the ID. 
+The email being sent after the registration process fro user confirmation or the one being send after the forgot password 
+would contain this link in the message body of the email. User clicks this link to proceed forward in the flow.
 
+A new token is generated using the uuid package and the user ID is saved in redis store with key as the token and value as the ID. 
 Expiration is set for 1 day. After this duration, token would expire and the link sent in the mail will not work as intended.
+When the user clicks on the email link, there is a redirection to the front end application.
 
 It returns a redirect URL to the client application with the generated token. Once the user clicks on the token,
-based on the status of token, registration would be confirmed or rejected. This part is handled in ConfirmUserResolver class.
-
+based on the status of token, registration would be confirmed/rejected or the user can update password.
  */
 
 import { v4 } from "uuid";

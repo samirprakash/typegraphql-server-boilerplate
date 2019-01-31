@@ -1,15 +1,10 @@
 /* 
 RegisterResolver operates on the USER table to create a new user.
 
-We have a default query defined below keep Graphql happy. It expects atleast one query and hence this dummy query has been provided.
-Register mutation creats a user in the USER table based on the values that have been provided while calling this resolver.
-The fields firstName, lastName, email and password are required to make a call to this resolver in order to create a user.
-Password gets encrupted using bcryptjs hashing algorithm while other values are passes on as-is.
+We have a default query defined below to keep Graphql happy. It expects atleast one query and hence this dummy query has been provided.
 
-Since we have two tokens being saved now, one for the forgot password and one for user confirmation, 
-we should  be adding a prefix to the token to differentiate them when there is a need to retrieve
-the tokens and the corresponding values. This is being passed along with the current flow to the SendEmail method.
-
+Register mutation takes firstName, lastName, email and password which are the required fields to create a new user. 
+These fields are defined in a custom input i.e. RegisterInput. Password gets encrypted using bcryptjs hashing algorithm while other values are passed on as-is.
 
 Queries and Mutations to be used during the registration process are defined here.
 
@@ -28,6 +23,10 @@ import { RegisterInput } from "./register/RegisterInput";
 @Resolver()
 export class RegisterResolver {
   // Define a default query to keep Graphql happy
+  // Graphql expects atleast one query defined
+
+  // Custom middleware to execute a query only when an autheticated user is logged in
+  // This middleware should be added to all secure paths in the user flow
   @UseMiddleware(IsUserAuthenticated)
   @Query(() => String)
   async defaultQueryToMakeGraphqlHappy() {
@@ -36,6 +35,7 @@ export class RegisterResolver {
 
   // Register mutation to create a new user in the USER DB
   // Validations and structure of the input is being read from RegisterInput
+  // We are spreading out RegisterInput to read the fields
   @Mutation(() => User)
   async register(@Arg("data")
   {
@@ -44,9 +44,10 @@ export class RegisterResolver {
     email,
     password
   }: RegisterInput): Promise<User> {
+    // Encrupt user password to generate a hashed password for enhanced security
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    // .create() cretes an User object
+    // .create() creates an User object
     // ,save() created an entry in the DB
     // Just calling .create() does not update the DB
     const user = await User.create({
@@ -57,9 +58,9 @@ export class RegisterResolver {
     }).save();
 
     // Once the user has been saved successfully, send the confirmation mail
-    // email to send the mail to
-    // prefix to differentiate what kind of token has been used
-    // 'confirm' is the current flow which would be added to the mail
+    // User needs to click on the confirmation mail link to complete the registration process
+    // At this point of time, user is created in DB but is not activated
+    // User would not be able to access GUI unless the confirmation has happened
     SendEmail(
       email,
       await createEmailURL(user.id, USER_CONFIRMATION_PREFIX, "confirm")

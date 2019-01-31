@@ -6,6 +6,7 @@ let connection: Connection;
 
 beforeAll(async () => {
   connection = await testConnection();
+  // jest.setTimeout(30000);
 });
 
 afterAll(async () => {

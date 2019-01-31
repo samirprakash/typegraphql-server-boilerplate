@@ -5,11 +5,9 @@ forgotPassword mutation recieves an email which is used to get the registered us
 If do not find the user linked to the email, then also we send true as we do not want to be specific with the error.
 If we find the user, then we save the user ID in redis database with a new token and we send a change password mail to the user.
 
-Since we have two tokens being saved now, one for the forgot password and one for user confirmation, 
-we should  be adding a prefix to the token to differentiate them when there is a need to retrieve
-the tokens and the corresponding values. This is being passed along with the current flow to the SendEmail method.
-
 Queries and Mutations to be used during the user confirmation process are defined here.
+
+It returns a boolean specifying if the email was sent or not
 */
 
 import { Arg, Mutation, Resolver } from "type-graphql";
@@ -21,21 +19,26 @@ import { SendEmail } from "../../utils/email/send";
 @Resolver()
 export class ForgotPasswordResolver {
   @Mutation(() => Boolean)
+  // forgotPassword takes user email, looks up the user and
+  // sends an email with the link to change password
   async forgotPassword(@Arg("email") email: string): Promise<Boolean> {
+    // lookup for a registered user with the provided email
     const user = await User.findOne({ where: { email } });
 
+    // if user is not registered, we still want to return true instead of false
+    // This is being done to ensure that we do not inform the end user what is being done wrong
+    // to avoid phishing attacks
     if (!user) {
       return true;
     }
 
-    // email to send the mail to
-    // prefix to differentiate what kind of token has been used
-    // 'change-password' is the current flow which would be added to the mail
+    // if user exists, then send a change password email to the user's registered email
     SendEmail(
       email,
       await createEmailURL(user.id, FORGOT_PASSWORD_PREFIX, "change-password")
     );
 
+    // if everything works, return true
     return true;
   }
 }

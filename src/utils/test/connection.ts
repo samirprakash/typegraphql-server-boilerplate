@@ -1,3 +1,6 @@
+/*
+Generate a test connection to the test database for running jest tests 
+ */
 import { createConnection } from "typeorm";
 
 const testConnection = async (drop: boolean = false) => {

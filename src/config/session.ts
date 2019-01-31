@@ -1,3 +1,8 @@
+/* 
+SESSION defines the connection params to connect to the redis store.
+
+Specifically, it sets the cookie na,e, expiration time and the secret to access the token. This cookie is what we use for validating our user sessions.
+*/
 import connectRedis from "connect-redis";
 import session from "express-session";
 import redis from "./redis";
