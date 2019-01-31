@@ -8,7 +8,7 @@ is already present in our DB or not.
 
 Custom messages can be generated from the endpoints to return back to the GUI for better UX.
  */
-import { IsEmail, Length } from "class-validator";
+import { IsEmail, Length, MinLength } from "class-validator";
 import { Field, InputType } from "type-graphql";
 import { IsEmailAlreadyPresent } from "./IsEmailAlreadyPresent";
 
@@ -31,6 +31,6 @@ export class RegisterInput {
   email: string;
 
   @Field()
-  @Length(6, 18)
+  @MinLength(6)
   password: string;
 }

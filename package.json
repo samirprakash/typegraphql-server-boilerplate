@@ -42,6 +42,6 @@
   "scripts": {
     "start": "ts-node-dev --respawn --transpileOnly --debug src/index.ts",
     "db:setup": "ts-node ./src/utils/test/setup.ts",
-    "test": "yarn run db:setup && jest"
+    "test": "yarn run db:setup && jest --forceExit --detectOpenHandles"
   }
 }

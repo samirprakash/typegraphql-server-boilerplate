@@ -1,7 +1,7 @@
 /* 
 ChangePasswordInout defines the required data and its constraints for the change password process.
  */
-import { Length } from "class-validator";
+import { MinLength } from "class-validator";
 import { Field, InputType } from "type-graphql";
 
 @InputType()
@@ -10,6 +10,6 @@ export class ChangePasswordInput {
   token: string;
 
   @Field()
-  @Length(6, 18)
+  @MinLength(6)
   password: string;
 }

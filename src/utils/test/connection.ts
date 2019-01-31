@@ -1,8 +1,8 @@
 import { createConnection } from "typeorm";
 
-const testConnection = (drop: boolean = false) => {
-  return createConnection({
-    name: "test",
+const testConnection = async (drop: boolean = false) => {
+  return await createConnection({
+    name: "default",
     type: "postgres",
     host: "localhost",
     port: 5432,
@@ -11,7 +11,7 @@ const testConnection = (drop: boolean = false) => {
     database: "test-server-boilerplate",
     synchronize: drop,
     dropSchema: drop,
-    entities: [__dirname + "../../entity/**/*.*"]
+    entities: [__dirname + "/../../entity/**/*.*"]
   });
 };
 

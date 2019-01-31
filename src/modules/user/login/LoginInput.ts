@@ -1,7 +1,7 @@
 /* 
 LoginInput defines the required data and its constraints for the login process.
  */
-import { IsEmail, Length } from "class-validator";
+import { IsEmail, MinLength } from "class-validator";
 import { Field, InputType } from "type-graphql";
 
 @InputType()
@@ -11,6 +11,6 @@ export class LoginInput {
   email: string;
 
   @Field()
-  @Length(6, 18)
+  @MinLength(6)
   password: string;
 }
