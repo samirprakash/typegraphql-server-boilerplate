@@ -1,7 +1,13 @@
 /* 
 RegisterInput defines the required data and its constraints for the registration process.
  */
-import { IsEmail, Length, MinLength } from "class-validator";
+import {
+  IsAlpha,
+  IsAlphanumeric,
+  IsEmail,
+  Length,
+  MinLength
+} from "class-validator";
 import { Field, InputType } from "type-graphql";
 import { IsEmailAlreadyPresent } from "./IsEmailAlreadyPresent";
 
@@ -9,10 +15,12 @@ import { IsEmailAlreadyPresent } from "./IsEmailAlreadyPresent";
 export class RegisterInput {
   @Field()
   @Length(1, 16)
+  @IsAlpha()
   firstName: string;
 
   @Field()
   @Length(1, 16)
+  @IsAlpha()
   lastName: string;
 
   @Field()
@@ -25,5 +33,6 @@ export class RegisterInput {
 
   @Field()
   @MinLength(6)
+  @IsAlphanumeric()
   password: string;
 }
