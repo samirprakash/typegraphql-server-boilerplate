@@ -10,7 +10,7 @@ Please keep this example updated till the time we keep making changes to the Log
 ##### Execute:
 
 ```
-mutation{
+query{
   login(data: {email: "TestUser1@test.com", password: "testuser"}) {
     id
     firstName

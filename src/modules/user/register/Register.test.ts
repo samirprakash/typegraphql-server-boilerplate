@@ -4,7 +4,6 @@ import { Connection } from "typeorm";
 import { User } from "../../../entity/User";
 import testConnection from "../../../utils/test/connection";
 import gCall from "../../../utils/test/gCall";
-import { registerMutation } from "../../../utils/test/mutation";
 
 let connection: Connection;
 
@@ -17,6 +16,19 @@ afterAll(async done => {
   await connection.close();
   done();
 });
+
+const registerMutation = `
+mutation Register($data: RegisterInput!) {
+  register(data: $data) {
+    id
+    firstName
+    lastName
+    email
+    name
+    confirmed
+  }
+}
+`;
 
 describe("User registration process :", () => {
   const user = {
@@ -31,7 +43,12 @@ describe("User registration process :", () => {
       gCall({
         source: registerMutation,
         variableValues: {
-          data: user
+          data: {
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            password: user.password
+          }
         }
       })
     ).resolves.toMatchObject({

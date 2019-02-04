@@ -11,14 +11,14 @@ It returns an object of entity type User or null based on whether the user can b
 */
 
 import bcrypt from "bcryptjs";
-import { Arg, Ctx, Mutation, Resolver } from "type-graphql";
+import { Arg, Ctx, Query, Resolver } from "type-graphql";
 import { User } from "../../entity/User";
 import { UserContext } from "../../types/UserContext";
 import { LoginInput } from "./login/LoginInput";
 
 @Resolver()
 export class LoginResolver {
-  @Mutation(() => User, { nullable: true })
+  @Query(() => User, { nullable: true })
   // login mutation tries to find a user from the DB
   // based on the provided email and password
   async login(
