@@ -10,11 +10,12 @@ interface Options {
   variableValues?: Maybe<{
     [key: string]: any;
   }>;
+  userId?: number;
 }
 
 let schema: GraphQLSchema;
 
-const gCall = async ({ source, variableValues }: Options) => {
+const gCall = async ({ source, variableValues, userId }: Options) => {
   // build schema only if the schema does not already exist to expedite execution time
   if (!schema) {
     schema = await createSchema();
@@ -23,7 +24,17 @@ const gCall = async ({ source, variableValues }: Options) => {
   return graphql({
     schema,
     source,
-    variableValues
+    variableValues,
+    contextValue: {
+      req: {
+        session: {
+          userId
+        }
+      },
+      res: {
+        clearCookie: jest.fn()
+      }
+    }
   });
 };
 

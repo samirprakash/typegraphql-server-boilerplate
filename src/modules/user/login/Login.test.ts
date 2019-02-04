@@ -17,7 +17,7 @@ afterAll(async done => {
   done();
 });
 
-export const loginQuery = `
+const loginQuery = `
 query Login($data: LoginInput!) {
   login(data: $data) {
     id
@@ -29,7 +29,7 @@ query Login($data: LoginInput!) {
 }`;
 
 describe("User login process :", () => {
-  it("should be able to get the registered user", async () => {
+  test.only("should be able to get the registered user", async () => {
     const user = {
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
@@ -37,20 +37,23 @@ describe("User login process :", () => {
       password: await bcrypt.hash(faker.internet.password(), 12)
     };
 
-    const response = await User.create(user).save();
-    console.log(response);
+    await User.create(user).save();
 
-    await gCall({
-      source: loginQuery,
-      variableValues: {
-        data: {
-          email: user.email,
-          password: user.password
+    try {
+      const gql = await gCall({
+        source: loginQuery,
+        variableValues: {
+          data: {
+            email: user.email,
+            password: user.password
+          }
         }
-      }
-    }).then(response => {
-      console.log(response.data);
-    });
+      });
+
+      console.log(gql);
+    } catch (err) {
+      console.log(err);
+    }
   });
 
   it("should find the user with the registered email", async () => {
