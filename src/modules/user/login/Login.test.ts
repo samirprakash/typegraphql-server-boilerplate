@@ -29,7 +29,7 @@ query Login($data: LoginInput!) {
 }`;
 
 describe("User login process :", () => {
-  test.only("should be able to get the registered user", async () => {
+  it("should be able to get the registered user", async () => {
     const user = {
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
