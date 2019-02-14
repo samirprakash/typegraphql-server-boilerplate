@@ -19,7 +19,7 @@ export async function SendEmail(email: string, url: string) {
 
   // setup email data with unicode symbols
   const mailOptions = {
-    from: '"insurEasier@gmail.com', // sender address
+    from: '"test-admin@gmail.com', // sender address
     to: email, // list of receivers
     subject: "Account verification mail", // Subject line
     text: `Please click on the link below to confirm your account.`, // plain text body

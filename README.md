@@ -1,16 +1,12 @@
-# insurEasier : `Server`
+# TypeGraphQL server boilerplate
 
-**All Insurance Made Easier**
-
-insurEasier is an application that intends to ease the life for both insurance seekers and providers by bringing them together on a common interactive platform.
-
-URL: _http://insureasier.com_
+A graphQL and typegraphql based server boilerplate to be used as a backend for an e-commerce based web application or mobile app.
 
 ## Getting Started
 
 - Get the pre-requisites done
 - Open a new terminal window and CD to your workspace
-- Clone this repo by executing `git clone git@github.com:insurEasier/server-broilerplate.git`
+- Clone this repo
 
 ### Prerequisites
 
