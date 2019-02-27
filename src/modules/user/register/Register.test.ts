@@ -35,7 +35,7 @@ describe("User registration process :", () => {
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
     email: faker.internet.email(),
-    password: faker.internet.password()
+    password: faker.internet.password(),
   };
 
   it("should be able to create a user", async () => {
@@ -47,25 +47,25 @@ describe("User registration process :", () => {
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
-            password: user.password
-          }
-        }
-      })
+            password: user.password,
+          },
+        },
+      }),
     ).resolves.toMatchObject({
       data: {
         register: {
           firstName: user.firstName,
           lastName: user.lastName,
           email: user.email,
-          confirmed: false
-        }
-      }
+          confirmed: false,
+        },
+      },
     });
 
     const dbUser = await User.findOne({ where: { email: user.email } });
     await expect(dbUser).toBeDefined();
     await expect(
-      await bcrypt.compare(user.password, dbUser!.password)
+      await bcrypt.compare(user.password, dbUser!.password),
     ).toBeTruthy();
   });
 
@@ -74,11 +74,11 @@ describe("User registration process :", () => {
       firstName: user.firstName,
       lastName: faker.name.lastName(),
       email: faker.internet.email(),
-      password: faker.internet.password()
+      password: faker.internet.password(),
     };
 
     await expect(
-      User.create(userWithExistingParams).save()
+      User.create(userWithExistingParams).save(),
     ).resolves.toBeDefined();
   });
 
@@ -87,11 +87,11 @@ describe("User registration process :", () => {
       firstName: faker.name.firstName(),
       lastName: user.lastName,
       email: faker.internet.email(),
-      password: faker.internet.password()
+      password: faker.internet.password(),
     };
 
     await expect(
-      User.create(userWithExistingParams).save()
+      User.create(userWithExistingParams).save(),
     ).resolves.toBeDefined();
   });
 
@@ -100,7 +100,7 @@ describe("User registration process :", () => {
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       email: user.email,
-      password: faker.internet.password()
+      password: faker.internet.password(),
     };
 
     await expect(User.create(userWithExistingParams).save()).rejects;
@@ -111,7 +111,7 @@ describe("User registration process :", () => {
       firstName: "",
       lastName: faker.name.lastName(),
       email: faker.internet.email(),
-      password: faker.internet.password()
+      password: faker.internet.password(),
     };
 
     await expect(User.create(userWithExistingParams).save()).rejects;
@@ -122,7 +122,7 @@ describe("User registration process :", () => {
       firstName: "testusertestusertestiusertestusertestuser", // length = 20
       lastName: faker.name.lastName(),
       email: faker.internet.email(),
-      password: faker.internet.password()
+      password: faker.internet.password(),
     };
 
     await expect(User.create(userWithExistingParams).save()).rejects;
@@ -133,7 +133,7 @@ describe("User registration process :", () => {
       firstName: "testuser1",
       lastName: faker.name.lastName(),
       email: faker.internet.email(),
-      password: faker.internet.password()
+      password: faker.internet.password(),
     };
 
     await expect(User.create(userWithExistingParams).save()).rejects;
@@ -144,7 +144,7 @@ describe("User registration process :", () => {
       firstName: faker.name.firstName(),
       lastName: "",
       email: faker.internet.email(),
-      password: faker.internet.password()
+      password: faker.internet.password(),
     };
 
     await expect(User.create(userWithExistingParams).save()).rejects;
@@ -155,7 +155,7 @@ describe("User registration process :", () => {
       firstName: faker.name.firstName(),
       lastName: "testusertestusertestiusertestusertestuser", // length = 20
       email: faker.internet.email(),
-      password: faker.internet.password()
+      password: faker.internet.password(),
     };
 
     await expect(User.create(userWithExistingParams).save()).rejects;
@@ -166,7 +166,7 @@ describe("User registration process :", () => {
       firstName: faker.name.firstName(),
       lastName: "testuser1",
       email: faker.internet.email(),
-      password: faker.internet.password()
+      password: faker.internet.password(),
     };
 
     await expect(User.create(userWithExistingParams).save()).rejects;
@@ -177,7 +177,7 @@ describe("User registration process :", () => {
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       email: faker.internet.email(),
-      password: "12345" // length < 6
+      password: "12345", // length < 6
     };
 
     await expect(User.create(userWithExistingParams).save()).rejects;

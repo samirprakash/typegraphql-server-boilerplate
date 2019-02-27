@@ -42,7 +42,7 @@ export class RegisterResolver {
     firstName,
     lastName,
     email,
-    password
+    password,
   }: RegisterInput): Promise<User> {
     // Encrupt user password to generate a hashed password for enhanced security
     const hashedPassword = await bcrypt.hash(password, 12);
@@ -54,16 +54,16 @@ export class RegisterResolver {
       firstName,
       lastName,
       email,
-      password: hashedPassword
+      password: hashedPassword,
     }).save();
 
     // Once the user has been saved successfully, send the confirmation mail
     // User needs to click on the confirmation mail link to complete the registration process
     // At this point of time, user is created in DB but is not activated
     // User would not be able to access GUI unless the confirmation has happened
-    SendEmail(
+    await SendEmail(
       email,
-      await createEmailURL(user.id, USER_CONFIRMATION_PREFIX, "confirm")
+      await createEmailURL(user.id, USER_CONFIRMATION_PREFIX, "confirm"),
     );
 
     return user;
