@@ -33,9 +33,9 @@ export class ForgotPasswordResolver {
     }
 
     // if user exists, then send a change password email to the user's registered email
-    SendEmail(
+    await SendEmail(
       email,
-      await createEmailURL(user.id, FORGOT_PASSWORD_PREFIX, "change-password")
+      await createEmailURL(user.id, FORGOT_PASSWORD_PREFIX, "change-password"),
     );
 
     // if everything works, return true

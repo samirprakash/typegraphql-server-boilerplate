@@ -24,7 +24,7 @@ export class CurrentUserResolver {
 
     // if session is active and the user can be authenticated using the existing user ID
     // look up USER table to get the user and return the user
-    const user = User.findOne({ where: { id: ctx.req.session!.userId } });
+    const user = await User.findOne({ where: { id: ctx.req.session!.userId } });
     return user;
   }
 }
