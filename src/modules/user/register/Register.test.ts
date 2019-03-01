@@ -25,6 +25,7 @@ mutation Register($data: RegisterInput!) {
     lastName
     email
     name
+    username
     confirmed
   }
 }
@@ -58,6 +59,7 @@ describe("User registration process :", () => {
           lastName: user.lastName,
           email: user.email,
           confirmed: false,
+          name: user.firstName + " " + user.lastName,
         },
       },
     });

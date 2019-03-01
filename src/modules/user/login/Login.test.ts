@@ -21,6 +21,7 @@ query Login($data: LoginInput!) {
   login(data: $data) {
     id
     name
+    username
     firstName
     lastName
     confirmed
